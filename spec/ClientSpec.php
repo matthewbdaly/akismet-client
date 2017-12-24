@@ -14,6 +14,12 @@ class ClientSpec extends ObjectBehavior
         $this->shouldHaveType(Client::class);
     }
 
+    function it_can_set_the_key()
+    {
+        $this->setKey('foo');
+        $this->getKey()->shouldReturn('foo');
+    }
+
     function it_can_verify_the_key()
     {
         $this->setKey('foo');

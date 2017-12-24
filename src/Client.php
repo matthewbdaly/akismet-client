@@ -21,4 +21,9 @@ class Client
         $this->key = $key;
         return $this;
     }
+
+    public function getKey()
+    {
+        return $this->key;
+    }
 }
