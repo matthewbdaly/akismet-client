@@ -7,9 +7,16 @@ use Matthewbdaly\AkismetClient\Exceptions\KeyNotSet;
 use Matthewbdaly\AkismetClient\Exceptions\BlogNotSet;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Http\Client\HttpClient;
+use Http\Message\MessageFactory;
 
 class ClientSpec extends ObjectBehavior
 {
+    function let (HttpClient $client, MessageFactory $messageFactory)
+    {
+        $this->beConstructedWith($client, $messageFactory);
+    }
+
     function it_is_initializable()
     {
         $this->shouldHaveType(Client::class);
