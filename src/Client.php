@@ -3,6 +3,7 @@
 namespace Matthewbdaly\AkismetClient;
 
 use Matthewbdaly\AkismetClient\Exceptions\KeyNotSet;
+use Matthewbdaly\AkismetClient\Exceptions\KeyInvalid;
 use Matthewbdaly\AkismetClient\Exceptions\BlogNotSet;
 use Http\Client\HttpClient;
 use Http\Message\MessageFactory;
@@ -25,17 +26,6 @@ class Client
         $this->messageFactory = $messageFactory ?: MessageFactoryDiscovery::find();
     }
 
-    public function verifyKey()
-    {
-        if (!$this->key) {
-            throw new KeyNotSet;
-        }
-        if (!$this->blog) {
-            throw new BlogNotSet;
-        }
-        return true;
-    }
-
     public function setKey(string $key)
     {
         $this->key = $key;
@@ -56,5 +46,29 @@ class Client
     public function getBlog()
     {
         return $this->blog;
+    }
+
+    public function verifyKey()
+    {
+        if (!$this->key) {
+            throw new KeyNotSet;
+        }
+        if (!$this->blog) {
+            throw new BlogNotSet;
+        }
+        $url = 'https://rest.akismet.com/1.1/verify-key';
+        $request = $this->messageFactory->createRequest(
+            'POST',
+            $url,
+            ['key' => $this->key, 'blog' => $this->blog],
+            null,
+            '1.1'
+        );
+        $response = $this->client->sendRequest($request);
+        $data = $response->getBody()->getContents();
+        if ($data == 'invalid') {
+            throw new KeyInvalid;
+        }
+        return true;
     }
 }

@@ -4,11 +4,15 @@ namespace spec\Matthewbdaly\AkismetClient;
 
 use Matthewbdaly\AkismetClient\Client;
 use Matthewbdaly\AkismetClient\Exceptions\KeyNotSet;
+use Matthewbdaly\AkismetClient\Exceptions\KeyInvalid;
 use Matthewbdaly\AkismetClient\Exceptions\BlogNotSet;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Http\Client\HttpClient;
 use Http\Message\MessageFactory;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 class ClientSpec extends ObjectBehavior
 {
@@ -45,10 +49,29 @@ class ClientSpec extends ObjectBehavior
         $this->shouldThrow(BlogNotSet::class)->duringVerifyKey();
     }
 
-    function it_can_verify_the_key()
+    function it_can_verify_the_key(HttpClient $client, MessageFactory $messageFactory, RequestInterface $request, ResponseInterface $response, StreamInterface $stream)
     {
+        $this->beConstructedWith($client, $messageFactory);
         $this->setKey('foo');
         $this->setBlog('http://example.com');
+        $messageFactory->createRequest('POST', 'https://rest.akismet.com/1.1/verify-key', ['key' => 'foo', 'blog' => 'http://example.com'], null, '1.1')->willReturn($request);
+        $client->sendRequest($request)->willReturn($response);
+        $response->getStatusCode()->willReturn(200);
+        $response->getBody()->willReturn($stream);
+        $stream->getContents()->willReturn("valid");
         $this->verifyKey()->shouldReturn(true);
+    }
+
+    function it_can_handle_invalid_key(HttpClient $client, MessageFactory $messageFactory, RequestInterface $request, ResponseInterface $response, StreamInterface $stream)
+    {
+        $this->beConstructedWith($client, $messageFactory);
+        $this->setKey('foo');
+        $this->setBlog('http://example.com');
+        $messageFactory->createRequest('POST', 'https://rest.akismet.com/1.1/verify-key', ['key' => 'foo', 'blog' => 'http://example.com'], null, '1.1')->willReturn($request);
+        $client->sendRequest($request)->willReturn($response);
+        $response->getStatusCode()->willReturn(200);
+        $response->getBody()->willReturn($stream);
+        $stream->getContents()->willReturn("invalid");
+        $this->shouldThrow(KeyInvalid::class)->duringVerifyKey();
     }
 }
