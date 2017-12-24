@@ -20,6 +20,12 @@ class ClientSpec extends ObjectBehavior
         $this->getKey()->shouldReturn('foo');
     }
 
+    function it_can_set_the_blog()
+    {
+        $this->setBlog('http://example.com');
+        $this->getBlog()->shouldReturn('http://example.com');
+    }
+
     function it_can_verify_the_key()
     {
         $this->setKey('foo');
