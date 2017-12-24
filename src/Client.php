@@ -3,6 +3,7 @@
 namespace Matthewbdaly\AkismetClient;
 
 use Matthewbdaly\AkismetClient\Exceptions\KeyNotSet;
+use Matthewbdaly\AkismetClient\Exceptions\BlogNotSet;
 
 class Client
 {
@@ -14,6 +15,9 @@ class Client
     {
         if (!$this->key) {
             throw new KeyNotSet;
+        }
+        if (!$this->blog) {
+            throw new BlogNotSet;
         }
         return true;
     }
