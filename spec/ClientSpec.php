@@ -54,7 +54,7 @@ class ClientSpec extends ObjectBehavior
         $this->beConstructedWith($client, $messageFactory);
         $this->setKey('foo');
         $this->setBlog('http://example.com');
-        $messageFactory->createRequest('POST', 'https://rest.akismet.com/1.1/verify-key', ['key' => 'foo', 'blog' => 'http://example.com'], null, '1.1')->willReturn($request);
+        $messageFactory->createRequest('POST', 'https://rest.akismet.com/1.1/verify-key', ['key' => 'foo', 'blog' => urlencode('http://example.com')], null, '1.1')->willReturn($request);
         $client->sendRequest($request)->willReturn($response);
         $response->getStatusCode()->willReturn(200);
         $response->getBody()->willReturn($stream);
@@ -67,7 +67,7 @@ class ClientSpec extends ObjectBehavior
         $this->beConstructedWith($client, $messageFactory);
         $this->setKey('foo');
         $this->setBlog('http://example.com');
-        $messageFactory->createRequest('POST', 'https://rest.akismet.com/1.1/verify-key', ['key' => 'foo', 'blog' => 'http://example.com'], null, '1.1')->willReturn($request);
+        $messageFactory->createRequest('POST', 'https://rest.akismet.com/1.1/verify-key', ['key' => 'foo', 'blog' => urlencode('http://example.com')], null, '1.1')->willReturn($request);
         $client->sendRequest($request)->willReturn($response);
         $response->getStatusCode()->willReturn(200);
         $response->getBody()->willReturn($stream);

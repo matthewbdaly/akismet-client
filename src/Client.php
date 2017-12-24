@@ -60,7 +60,7 @@ class Client
         $request = $this->messageFactory->createRequest(
             'POST',
             $url,
-            ['key' => $this->key, 'blog' => $this->blog],
+            ['key' => $this->key, 'blog' => urlencode($this->blog)],
             null,
             '1.1'
         );
