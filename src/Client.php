@@ -206,38 +206,6 @@ class Client
     }
 
     /**
-     * Verify currently set key against the API
-     *
-     * @return boolean
-     * @throws KeyNotSet Key is not set.
-     * @throws BlogNotSet Blog is not set.
-     * @throws KeyInvalid Key is not valid.
-     */
-    public function verifyKey()
-    {
-        if (!$this->key) {
-            throw new KeyNotSet;
-        }
-        if (!$this->blog) {
-            throw new BlogNotSet;
-        }
-        $url = 'https://rest.akismet.com/1.1/verify-key';
-        $request = $this->messageFactory->createRequest(
-            'POST',
-            $url,
-            ['key' => $this->key, 'blog' => urlencode($this->blog)],
-            null,
-            '1.1'
-        );
-        $response = $this->client->sendRequest($request);
-        $data = $response->getBody()->getContents();
-        if ($data == 'invalid') {
-            throw new KeyInvalid;
-        }
-        return true;
-    }
-
-    /**
      * Set IP address
      *
      * @param string $ip The IP address.
@@ -587,8 +555,78 @@ class Client
         return $this;
     }
 
+    /**
+     * Verify currently set key against the API
+     *
+     * @return boolean
+     * @throws KeyNotSet Key is not set.
+     * @throws BlogNotSet Blog is not set.
+     * @throws KeyInvalid Key is not valid.
+     */
+    public function verifyKey()
+    {
+        if (!$this->key) {
+            throw new KeyNotSet;
+        }
+        if (!$this->blog) {
+            throw new BlogNotSet;
+        }
+        $url = 'https://rest.akismet.com/1.1/verify-key';
+        $request = $this->messageFactory->createRequest(
+            'POST',
+            $url,
+            ['key' => $this->key, 'blog' => urlencode($this->blog)],
+            null,
+            '1.1'
+        );
+        $response = $this->client->sendRequest($request);
+        $data = $response->getBody()->getContents();
+        if ($data == 'invalid') {
+            throw new KeyInvalid;
+        }
+        return true;
+    }
+
     public function check()
     {
-        // TODO: write logic here
+        if (!$this->key) {
+            throw new KeyNotSet;
+        }
+        if (!$this->blog) {
+            throw new BlogNotSet;
+        }
+        $url = 'https://'.$this->key.'.rest.akismet.com/1.1/comment-check';
+        $params = [
+            'blog' => $this->getBlog(),
+            'user_ip' => $this->getIp(),
+            'user_agent' => $this->getAgent(),
+            'referrer' => $this->getReferrer(),
+            'permalink' => $this->getPermalink(),
+            'comment_type' => $this->getCommentType(),
+            'comment_author' => $this->getCommentAuthor(),
+            'comment_author_email' => $this->getCommentAuthorEmail(),
+            'comment_author_url' => $this->getCommentAuthorUrl(),
+            'comment_content' => $this->getCommentContent(),
+            'comment_date_gmt' => $this->getCommentDateGMT(),
+            'comment_post_modified_gmt' => $this->getCommentPostModifiedDate(),
+            'blog_lang' => $this->getBlogLang(),
+            'blog_charset' => $this->getBlogCharset(),
+            'user_role' => $this->getUserRole(),
+            'is_test' => $this->getIsTest()
+        ];
+
+        $request = $this->messageFactory->createRequest(
+            'POST',
+            $url,
+            $params,
+            null,
+            '1.1'
+        );
+        $response = $this->client->sendRequest($request);
+        $data = $response->getBody()->getContents();
+        if ($data == 'true') {
+            return true;
+        }
+        return false;
     }
 }
