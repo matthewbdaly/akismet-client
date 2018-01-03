@@ -218,4 +218,16 @@ class ClientSpec extends ObjectBehavior
         $this->setBlogLang('en')->shouldReturn($this);
         $this->getBlogLang()->shouldReturn('en');
     }
+
+    function it_can_set_the_blog_charset()
+    {
+        $this->setBlogCharset('UTF-8')->shouldReturn($this);
+    }
+
+    function it_can_get_the_blog_charset()
+    {
+        $this->getBlogCharset()->shouldReturn(null);
+        $this->setBlogCharset('UTF-8')->shouldReturn($this);
+        $this->getBlogCharset()->shouldReturn('UTF-8');
+    }
 }

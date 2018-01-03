@@ -114,6 +114,14 @@ class Client
     protected $blogLang;
 
     /**
+     * Blog charset
+     *
+     * @var $blogCharset
+     */
+    protected $blogCharset;
+
+
+    /**
      * HTTPlug client
      *
      * @var $client
@@ -346,5 +354,16 @@ class Client
     public function getBlogLang()
     {
         return $this->blogLang;
+    }
+
+    public function setBlogCharset($charset)
+    {
+        $this->blogCharset = $charset;
+        return $this;
+    }
+
+    public function getBlogCharset()
+    {
+        return $this->blogCharset;
     }
 }
