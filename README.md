@@ -1,5 +1,8 @@
 # akismet-client
 
+[![Build Status](https://travis-ci.org/matthewbdaly/akismet-client.svg?branch=master)](https://travis-ci.org/matthewbdaly/akismet-client)
+
+
 A PHP client for the Akismet spam detection service. Built using modern practices and with an extensive test suite.
 
 Installation
