@@ -580,7 +580,7 @@ class Client
         $request = $this->messageFactory->createRequest(
             'POST',
             $url,
-            ['key' => $this->key, 'blog' => urlencode($this->blog)],
+            ['key' => $this->getKey(), 'blog' => urlencode($this->getBlog())],
             null,
             '1.1'
         );
@@ -607,7 +607,7 @@ class Client
         if (!$this->blog) {
             throw new BlogNotSet;
         }
-        $url = 'https://'.$this->key.'.rest.akismet.com/1.1/comment-check';
+        $url = 'https://'.$this->getKey().'.rest.akismet.com/1.1/comment-check';
         $params = $this->getParams();
         $request = $this->messageFactory->createRequest(
             'POST',
@@ -639,7 +639,7 @@ class Client
         if (!$this->blog) {
             throw new BlogNotSet;
         }
-        $url = 'https://'.$this->key.'.rest.akismet.com/1.1/submit-spam';
+        $url = 'https://'.$this->getKey().'.rest.akismet.com/1.1/submit-spam';
         $params = $this->getParams();
         $request = $this->messageFactory->createRequest(
             'POST',
@@ -671,7 +671,7 @@ class Client
         if (!$this->blog) {
             throw new BlogNotSet;
         }
-        $url = 'https://'.$this->key.'.rest.akismet.com/1.1/submit-ham';
+        $url = 'https://'.$this->getKey().'.rest.akismet.com/1.1/submit-ham';
         $params = $this->getParams();
         $request = $this->messageFactory->createRequest(
             'POST',
