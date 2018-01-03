@@ -37,6 +37,13 @@ class Client
     protected $ip;
 
     /**
+     * User agent string
+     *
+     * @var $agent
+     */
+    protected $agent;
+
+    /**
      * HTTPlug client
      *
      * @var $client
@@ -148,5 +155,16 @@ class Client
     public function getIp()
     {
         return $this->ip;
+    }
+
+    public function setAgent($agent)
+    {
+        $this->agent = $agent;
+        return $this;
+    }
+
+    public function getAgent()
+    {
+        return $this->agent;
     }
 }
