@@ -158,4 +158,16 @@ class ClientSpec extends ObjectBehavior
         $this->setCommentAuthorEmail('eric@example.com')->shouldReturn($this);
         $this->getCommentAuthorEmail()->shouldReturn('eric@example.com');
     }
+
+    function it_can_set_the_comment_author_url()
+    {
+        $this->setCommentAuthorUrl('http://example.com')->shouldReturn($this);
+    }
+
+    function it_can_get_the_comment_author_url()
+    {
+        $this->getCommentAuthorUrl()->shouldReturn(null);
+        $this->setCommentAuthorUrl('http://example.com')->shouldReturn($this);
+        $this->getCommentAuthorUrl()->shouldReturn('http://example.com');
+    }
 }

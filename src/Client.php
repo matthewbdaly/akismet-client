@@ -79,6 +79,13 @@ class Client
     protected $commentAuthorEmail;
 
     /**
+     * Comment author url
+     *
+     * @var $commentAuthorUrl
+     */
+    protected $commentAuthorUrl;
+
+    /**
      * HTTPlug client
      *
      * @var $client
@@ -256,5 +263,16 @@ class Client
     public function getCommentAuthorEmail()
     {
         return $this->commentAuthorEmail;
+    }
+
+    public function setCommentAuthorUrl($url)
+    {
+        $this->commentAuthorUrl = $url;
+        return $this;
+    }
+
+    public function getCommentAuthorUrl()
+    {
+        return $this->commentAuthorUrl;
     }
 }
