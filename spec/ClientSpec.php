@@ -182,4 +182,16 @@ class ClientSpec extends ObjectBehavior
         $this->setCommentContent('Nice post')->shouldReturn($this);
         $this->getCommentContent()->shouldReturn('Nice post');
     }
+
+    function it_can_set_the_comment_date()
+    {
+        $this->setCommentDateGMT('1975-12-25T14:15:16-0500')->shouldReturn($this);
+    }
+
+    function it_can_get_the_comment_date()
+    {
+        $this->getCommentDateGMT()->shouldReturn(null);
+        $this->setCommentDateGMT('1975-12-25T14:15:16-0500')->shouldReturn($this);
+        $this->getCommentDateGMT()->shouldReturn('1975-12-25T14:15:16-0500');
+    }
 }

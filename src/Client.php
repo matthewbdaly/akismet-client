@@ -93,6 +93,13 @@ class Client
     protected $commentContent;
 
     /**
+     * Comment date GMT
+     *
+     * @var $commentDateGMT
+     */
+    protected $commentDateGMT;
+
+    /**
      * HTTPlug client
      *
      * @var $client
@@ -292,5 +299,16 @@ class Client
     public function getCommentContent()
     {
         return $this->commentContent;
+    }
+
+    public function setCommentDateGMT($date)
+    {
+        $this->commentDateGMT = $date;
+        return $this;
+    }
+
+    public function getCommentDateGMT()
+    {
+        return $this->commentDateGMT;
     }
 }
