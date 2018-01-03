@@ -447,4 +447,57 @@ class ClientSpec extends ObjectBehavior
         $stream->getContents()->willReturn("Thanks for making the web a better place.");
         $this->spam()->shouldReturn(true);
     }
+
+    function it_can_mark_a_comment_as_ham(HttpClient $client, MessageFactory $messageFactory, RequestInterface $request, ResponseInterface $response, StreamInterface $stream)
+    {
+        // Construct object
+        $this->beConstructedWith($client, $messageFactory);
+
+        // Set key and blog
+        $this->setKey('foo');
+        $this->setBlog('http://example.com');
+
+        // Set comment parameters
+        $this->setIp('192.168.1.1');
+        $this->setAgent('Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6');
+        $this->setReferrer('http://www.google.com/');
+        $this->setPermalink('http://yourblogdomainname.com/blog/post=1');
+        $this->setCommentType('comment');
+        $this->setCommentAuthor('Eric Smith');
+        $this->setCommentAuthorEmail('eric@example.com');
+        $this->setCommentAuthorUrl('http://example.com');
+        $this->setCommentContent('Nice post');
+        $this->setCommentDateGMT('1975-12-25T14:15:16-0500');
+        $this->setCommentPostModifiedDate('1975-12-25T14:15:16-0500');
+        $this->setBlogLang('en');
+        $this->setBlogCharset('UTF-8');
+        $this->setUserRole('administrator');
+        $this->setIsTest(true);
+
+        // Create request
+        $params = [
+            'blog' => 'http://example.com',
+            'user_ip' => '192.168.1.1',
+            'user_agent' => 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6',
+            'referrer' => 'http://www.google.com/',
+            'permalink' => 'http://yourblogdomainname.com/blog/post=1',
+            'comment_type' => 'comment',
+            'comment_author' => 'Eric Smith',
+            'comment_author_email' => 'eric@example.com',
+            'comment_author_url' => 'http://example.com',
+            'comment_content' => 'Nice post',
+            'comment_date_gmt' => '1975-12-25T14:15:16-0500',
+            'comment_post_modified_gmt' => '1975-12-25T14:15:16-0500',
+            'blog_lang' => 'en',
+            'blog_charset' => 'UTF-8',
+            'user_role' => 'administrator',
+            'is_test' => true,
+        ];
+        $messageFactory->createRequest('POST', 'https://foo.rest.akismet.com/1.1/submit-ham', $params, null, '1.1')->willReturn($request);
+        $client->sendRequest($request)->willReturn($response);
+        $response->getStatusCode()->willReturn(200);
+        $response->getBody()->willReturn($stream);
+        $stream->getContents()->willReturn("Thanks for making the web a better place.");
+        $this->ham()->shouldReturn(true);
+    }
 }
