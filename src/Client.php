@@ -128,6 +128,13 @@ class Client
     protected $userRole;
 
     /**
+     * Is test
+     *
+     * @var $isTest
+     */
+    protected $isTest;
+
+    /**
      * HTTPlug client
      *
      * @var $client
@@ -382,5 +389,16 @@ class Client
     public function getUserRole()
     {
         return $this->userRole;
+    }
+
+    public function setIsTest(bool $isTest)
+    {
+        $this->isTest = $isTest;
+        return $this;
+    }
+
+    public function getIsTest()
+    {
+        return $this->isTest;
     }
 }

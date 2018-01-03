@@ -242,4 +242,16 @@ class ClientSpec extends ObjectBehavior
         $this->setUserRole('administrator')->shouldReturn($this);
         $this->getUserRole()->shouldReturn('administrator');
     }
+
+    function it_can_set_is_test()
+    {
+        $this->setIsTest(true)->shouldReturn($this);
+    }
+
+    function it_can_get_is_test()
+    {
+        $this->getIsTest()->shouldReturn(null);
+        $this->setIsTest(true)->shouldReturn($this);
+        $this->getIsTest()->shouldReturn(true);
+    }
 }
