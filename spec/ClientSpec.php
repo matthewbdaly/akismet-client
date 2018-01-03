@@ -230,4 +230,16 @@ class ClientSpec extends ObjectBehavior
         $this->setBlogCharset('UTF-8')->shouldReturn($this);
         $this->getBlogCharset()->shouldReturn('UTF-8');
     }
+
+    function it_can_set_the_user_role()
+    {
+        $this->setUserRole('administrator')->shouldReturn($this);
+    }
+
+    function it_can_get_the_user_role()
+    {
+        $this->getUserRole()->shouldReturn(null);
+        $this->setUserRole('administrator')->shouldReturn($this);
+        $this->getUserRole()->shouldReturn('administrator');
+    }
 }

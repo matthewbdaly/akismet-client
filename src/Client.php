@@ -120,6 +120,12 @@ class Client
      */
     protected $blogCharset;
 
+    /**
+     * User role
+     *
+     * @var $userRole
+     */
+    protected $userRole;
 
     /**
      * HTTPlug client
@@ -365,5 +371,16 @@ class Client
     public function getBlogCharset()
     {
         return $this->blogCharset;
+    }
+
+    public function setUserRole($role)
+    {
+        $this->userRole = $role;
+        return $this;
+    }
+
+    public function getUserRole()
+    {
+        return $this->userRole;
     }
 }
