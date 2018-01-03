@@ -723,22 +723,22 @@ class Client
      */
     public function setParams(array $params)
     {
-        $this->setBlog($params['blog']);
-        $this->setIp($params['user_ip']);
-        $this->setAgent($params['user_agent']);
-        $this->setReferrer($params['referrer']);
-        $this->setPermalink($params['permalink']);
-        $this->setCommentType($params['comment_type']);
-        $this->setCommentAuthor($params['comment_author']);
-        $this->setCommentAuthorEmail($params['comment_author_email']);
-        $this->setCommentAuthorUrl($params['comment_author_url']);
-        $this->setCommentContent($params['comment_content']);
-        $this->setCommentDateGMT($params['comment_date_gmt']);
-        $this->setCommentPostModifiedDate($params['comment_post_modified_gmt']);
-        $this->setBlogLang($params['blog_lang']);
-        $this->setBlogCharset($params['blog_charset']);
-        $this->setUserRole($params['user_role']);
-        $this->setIsTest($params['is_test']);
+        array_key_exists('blog', $params) ? $this->setBlog($params['blog']) : null;
+        array_key_exists('user_ip', $params) ? $this->setIp($params['user_ip']) : null;
+        array_key_exists('user_agent', $params) ? $this->setAgent($params['user_agent']) : null;
+        array_key_exists('referrer', $params) ? $this->setReferrer($params['referrer']) : null;
+        array_key_exists('permalink', $params) ? $this->setPermalink($params['permalink']) : null;
+        array_key_exists('comment_type', $params) ? $this->setCommentType($params['comment_type']) : null;
+        array_key_exists('comment_author', $params) ? $this->setCommentAuthor($params['comment_author']) : null;
+        array_key_exists('comment_author_email', $params) ? $this->setCommentAuthorEmail($params['comment_author_email']) : null;
+        array_key_exists('comment_author_url', $params) ? $this->setCommentAuthorUrl($params['comment_author_url']) : null;
+        array_key_exists('comment_content', $params) ? $this->setCommentContent($params['comment_content']) : null;
+        array_key_exists('comment_date_gmt', $params) ? $this->setCommentDateGMT($params['comment_date_gmt']) : null;
+        array_key_exists('comment_post_modified_gmt', $params) ? $this->setCommentPostModifiedDate($params['comment_post_modified_gmt']) : null;
+        array_key_exists('blog_lang', $params) ? $this->setBlogLang($params['blog_lang']) : null;
+        array_key_exists('blog_charset', $params) ? $this->setBlogCharset($params['blog_charset']) : null;
+        array_key_exists('user_role', $params) ? $this->setUserRole($params['user_role']) : null;
+        array_key_exists('is_test', $params) ? $this->setIsTest($params['is_test']) : null;
         return $this;
     }
 }
