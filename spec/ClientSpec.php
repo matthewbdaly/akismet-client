@@ -98,4 +98,16 @@ class ClientSpec extends ObjectBehavior
         $this->setAgent('Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6')->shouldReturn($this);
         $this->getAgent()->shouldReturn('Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6');
     }
+
+    function it_can_set_the_referrer()
+    {
+        $this->setReferrer('http://www.google.com/')->shouldReturn($this);
+    }
+
+    function it_can_get_the_referrer()
+    {
+        $this->getReferrer()->shouldReturn(null);
+        $this->setReferrer('http://www.google.com/')->shouldReturn($this);
+        $this->getReferrer()->shouldReturn('http://www.google.com/');
+    }
 }

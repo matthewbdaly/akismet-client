@@ -44,6 +44,13 @@ class Client
     protected $agent;
 
     /**
+     * Referrer
+     *
+     * @var $referrer
+     */
+    protected $referrer;
+
+    /**
      * HTTPlug client
      *
      * @var $client
@@ -166,5 +173,16 @@ class Client
     public function getAgent()
     {
         return $this->agent;
+    }
+
+    public function setReferrer($referrer)
+    {
+        $this->referrer = $referrer;
+        return $this;
+    }
+
+    public function getReferrer()
+    {
+        return $this->referrer;
     }
 }
