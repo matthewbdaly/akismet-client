@@ -206,4 +206,16 @@ class ClientSpec extends ObjectBehavior
         $this->setCommentPostModifiedDate('1975-12-25T14:15:16-0500')->shouldReturn($this);
         $this->getCommentPostModifiedDate()->shouldReturn('1975-12-25T14:15:16-0500');
     }
+
+    function it_can_set_the_blog_lang()
+    {
+        $this->setBlogLang('en')->shouldReturn($this);
+    }
+
+    function it_can_get_the_blog_lang()
+    {
+        $this->getBlogLang()->shouldReturn(null);
+        $this->setBlogLang('en')->shouldReturn($this);
+        $this->getBlogLang()->shouldReturn('en');
+    }
 }

@@ -107,6 +107,13 @@ class Client
     protected $commentPostModifiedDate;
 
     /**
+     * Blog language
+     *
+     * @var $blogLang
+     */
+    protected $blogLang;
+
+    /**
      * HTTPlug client
      *
      * @var $client
@@ -328,5 +335,16 @@ class Client
     public function getCommentPostModifiedDate()
     {
         return $this->commentPostModifiedDate;
+    }
+
+    public function setBlogLang($lang)
+    {
+        $this->blogLang = $lang;
+        return $this;
+    }
+
+    public function getBlogLang()
+    {
+        return $this->blogLang;
     }
 }
