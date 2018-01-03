@@ -535,6 +535,11 @@ class Client
         return $this->isTest;
     }
 
+    /**
+     * Flush the currently set parameters
+     *
+     * @return Client
+     */
     public function flush()
     {
         $this->ip = null;
@@ -587,6 +592,13 @@ class Client
         return true;
     }
 
+    /**
+     * Check the currently set comment to see if it is spam
+     *
+     * @return boolean
+     * @throws KeyNotSet Key is not set.
+     * @throws BlogNotSet Blog is not set.
+     */
     public function check()
     {
         if (!$this->key) {
