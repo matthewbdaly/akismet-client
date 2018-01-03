@@ -100,6 +100,13 @@ class Client
     protected $commentDateGMT;
 
     /**
+     * Comment post modified date
+     *
+     * @var $commentPostModifiedDate
+     */
+    protected $commentPostModifiedDate;
+
+    /**
      * HTTPlug client
      *
      * @var $client
@@ -310,5 +317,16 @@ class Client
     public function getCommentDateGMT()
     {
         return $this->commentDateGMT;
+    }
+
+    public function setCommentPostModifiedDate($date)
+    {
+        $this->commentPostModifiedDate = $date;
+        return $this;
+    }
+
+    public function getCommentPostModifiedDate()
+    {
+        return $this->commentPostModifiedDate;
     }
 }
