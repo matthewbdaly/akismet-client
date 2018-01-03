@@ -74,4 +74,16 @@ class ClientSpec extends ObjectBehavior
         $stream->getContents()->willReturn("invalid");
         $this->shouldThrow(KeyInvalid::class)->duringVerifyKey();
     }
+
+    function it_can_set_the_user_ip()
+    {
+        $this->setIp('192.168.1.1')->shouldReturn($this);
+    }
+
+    function it_can_get_the_user_ip()
+    {
+        $this->getIp()->shouldReturn(null);
+        $this->setIp('192.168.1.1')->shouldReturn($this);
+        $this->getIp()->shouldReturn('192.168.1.1');
+    }
 }

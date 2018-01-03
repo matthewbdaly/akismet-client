@@ -30,6 +30,13 @@ class Client
     protected $blog;
 
     /**
+     * IP address
+     *
+     * @var $ip
+     */
+    protected $ip;
+
+    /**
      * HTTPlug client
      *
      * @var $client
@@ -130,5 +137,16 @@ class Client
             throw new KeyInvalid;
         }
         return true;
+    }
+
+    public function setIp($ip)
+    {
+        $this->ip = $ip;
+        return $this;
+    }
+
+    public function getIp()
+    {
+        return $this->ip;
     }
 }
