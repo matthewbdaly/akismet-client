@@ -566,4 +566,24 @@ class Client
     {
         return $this->isTest;
     }
+
+    public function flush()
+    {
+        $this->ip = null;
+        $this->agent = null;
+        $this->referrer = null;
+        $this->permalink = null;
+        $this->commentType = null;
+        $this->commentAuthor = null;
+        $this->commentAuthorEmail = null;
+        $this->commentAuthorUrl = null;
+        $this->commentContent = null;
+        $this->commentDateGMT = null;
+        $this->commentPostModifiedDate = null;
+        $this->blogLang = null;
+        $this->blogCharset = null;
+        $this->userRole = null;
+        $this->isTest = null;
+        return $this;
+    }
 }

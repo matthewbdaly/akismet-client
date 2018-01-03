@@ -254,4 +254,38 @@ class ClientSpec extends ObjectBehavior
         $this->setIsTest(true)->shouldReturn($this);
         $this->getIsTest()->shouldReturn(true);
     }
+
+    function it_can_flush_params()
+    {
+        $this->setIp('192.168.1.1');
+        $this->setAgent('Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6');
+        $this->setReferrer('http://www.google.com/');
+        $this->setPermalink('http://yourblogdomainname.com/blog/post=1');
+        $this->setCommentType('comment');
+        $this->setCommentAuthor('Eric Smith');
+        $this->setCommentAuthorEmail('eric@example.com');
+        $this->setCommentAuthorUrl('http://example.com');
+        $this->setCommentContent('Nice post');
+        $this->setCommentDateGMT('1975-12-25T14:15:16-0500');
+        $this->setCommentPostModifiedDate('1975-12-25T14:15:16-0500');
+        $this->setBlogLang('en');
+        $this->setBlogCharset('UTF-8');
+        $this->setUserRole('administrator');
+        $this->setIsTest(true);
+        $this->flush()->shouldReturn($this);
+        $this->getIp()->shouldReturn(null);
+        $this->getAgent()->shouldReturn(null);
+        $this->getReferrer()->shouldReturn(null);
+        $this->getPermalink()->shouldReturn(null);
+        $this->getCommentType()->shouldReturn(null);
+        $this->getCommentAuthor()->shouldReturn(null);
+        $this->getCommentAuthorEmail()->shouldReturn(null);
+        $this->getCommentAuthorUrl()->shouldReturn(null);
+        $this->getCommentDateGMT()->shouldReturn(null);
+        $this->getCommentPostModifiedDate()->shouldReturn(null);
+        $this->getBlogLang()->shouldReturn(null);
+        $this->getUserRole()->shouldReturn(null);
+        $this->getIsTest()->shouldReturn(null);
+        $this->getBlogCharset()->shouldReturn(null);
+    }
 }
