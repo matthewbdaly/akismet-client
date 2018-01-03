@@ -723,6 +723,7 @@ class Client
      */
     public function setParams(array $params)
     {
+        array_key_exists('key', $params) ? $this->setKey($params['key']) : null;
         array_key_exists('blog', $params) ? $this->setBlog($params['blog']) : null;
         array_key_exists('user_ip', $params) ? $this->setIp($params['user_ip']) : null;
         array_key_exists('user_agent', $params) ? $this->setAgent($params['user_agent']) : null;
