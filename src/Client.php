@@ -237,166 +237,331 @@ class Client
         return true;
     }
 
-    public function setIp($ip)
+    /**
+     * Set IP address
+     *
+     * @param string $ip The IP address.
+     * @return Client
+     */
+    public function setIp(string $ip)
     {
         $this->ip = $ip;
         return $this;
     }
 
+    /**
+     * Get IP address
+     *
+     * @return string
+     */
     public function getIp()
     {
         return $this->ip;
     }
 
-    public function setAgent($agent)
+    /**
+     * Set user agent
+     *
+     * @param string $agent The user agent.
+     * @return Client
+     */
+    public function setAgent(string $agent)
     {
         $this->agent = $agent;
         return $this;
     }
 
+    /**
+     * Get user agent
+     *
+     * @return string
+     */
     public function getAgent()
     {
         return $this->agent;
     }
 
-    public function setReferrer($referrer)
+    /**
+     * Set referrer
+     *
+     * @param string $referrer The referrer.
+     * @return Client
+     */
+    public function setReferrer(string $referrer)
     {
         $this->referrer = $referrer;
         return $this;
     }
 
+    /**
+     * Get referrer
+     *
+     * @return string
+     */
     public function getReferrer()
     {
         return $this->referrer;
     }
 
-    public function setPermalink($permalink)
+    /**
+     * Set permalink
+     *
+     * @param string $permalink The permalink.
+     * @return Client
+     */
+    public function setPermalink(string $permalink)
     {
         $this->permalink = $permalink;
         return $this;
     }
 
+    /**
+     * Get permalink
+     *
+     * @return string
+     */
     public function getPermalink()
     {
         return $this->permalink;
     }
 
-    public function setCommentType($type)
+    /**
+     * Set comment type
+     *
+     * @param string $type The comment type - can be comment, forum-post, reply, blog-post, contact-form, signup, message or a custom type.
+     * @return Client
+     */
+    public function setCommentType(string $type)
     {
         $this->commentType = $type;
         return $this;
     }
 
+    /**
+     * Get comment type
+     *
+     * @return string
+     */
     public function getCommentType()
     {
         return $this->commentType;
     }
 
-    public function setCommentAuthor($author)
+    /**
+     * Set comment author
+     *
+     * @param string $author The comment author's name.
+     * @return Client
+     */
+    public function setCommentAuthor(string $author)
     {
         $this->commentAuthor = $author;
         return $this;
     }
 
+    /**
+     * Get comment author
+     *
+     * @return string
+     */
     public function getCommentAuthor()
     {
         return $this->commentAuthor;
     }
 
-    public function setCommentAuthorEmail($email)
+    /**
+     * Set comment author email
+     *
+     * @param string $email The comment author's email address.
+     * @return Client
+     */
+    public function setCommentAuthorEmail(string $email)
     {
         $this->commentAuthorEmail = $email;
         return $this;
     }
 
+    /**
+     * Get comment author email
+     *
+     * @return string
+     */
     public function getCommentAuthorEmail()
     {
         return $this->commentAuthorEmail;
     }
 
-    public function setCommentAuthorUrl($url)
+    /**
+     * Set comment author URL
+     *
+     * @param string $url The comment author's URL.
+     * @return Client
+     */
+    public function setCommentAuthorUrl(string $url)
     {
         $this->commentAuthorUrl = $url;
         return $this;
     }
 
+    /**
+     * Get comment author URL
+     *
+     * @return string
+     */
     public function getCommentAuthorUrl()
     {
         return $this->commentAuthorUrl;
     }
 
-    public function setCommentContent($content)
+    /**
+     * Set comment content
+     *
+     * @param string $content The comment content.
+     * @return Client
+     */
+    public function setCommentContent(string $content)
     {
         $this->commentContent = $content;
         return $this;
     }
 
+    /**
+     * Get comment content
+     *
+     * @return string
+     */
     public function getCommentContent()
     {
         return $this->commentContent;
     }
 
-    public function setCommentDateGMT($date)
+    /**
+     * Set comment date in GMT
+     *
+     * @param string $date The date of the comment in ISO-8601 format.
+     * @return Client
+     */
+    public function setCommentDateGMT(string $date)
     {
         $this->commentDateGMT = $date;
         return $this;
     }
 
+    /**
+     * Get comment date in GMT
+     *
+     * @return string
+     */
     public function getCommentDateGMT()
     {
         return $this->commentDateGMT;
     }
 
-    public function setCommentPostModifiedDate($date)
+    /**
+     * Set date for when post last modified
+     *
+     * @param string $date The date of the comment in ISO-8601 format.
+     * @return Client
+     */
+    public function setCommentPostModifiedDate(string $date)
     {
         $this->commentPostModifiedDate = $date;
         return $this;
     }
 
+    /**
+     * Get date for when post last modified
+     *
+     * @return string
+     */
     public function getCommentPostModifiedDate()
     {
         return $this->commentPostModifiedDate;
     }
 
-    public function setBlogLang($lang)
+    /**
+     * Set blog language
+     *
+     * @param string $lang The blog language.
+     * @return Client
+     */
+    public function setBlogLang(string $lang)
     {
         $this->blogLang = $lang;
         return $this;
     }
 
+    /**
+     * Get blog language
+     *
+     * @return string
+     */
     public function getBlogLang()
     {
         return $this->blogLang;
     }
 
-    public function setBlogCharset($charset)
+    /**
+     * Set blog charset
+     *
+     * @param string $charset The blog charset.
+     * @return Client
+     */
+    public function setBlogCharset(string $charset)
     {
         $this->blogCharset = $charset;
         return $this;
     }
 
+    /**
+     * Get blog charset
+     *
+     * @return string
+     */
     public function getBlogCharset()
     {
         return $this->blogCharset;
     }
 
-    public function setUserRole($role)
+    /**
+     * Set user role
+     *
+     * @param string $role The user role.
+     * @return Client
+     */
+    public function setUserRole(string $role)
     {
         $this->userRole = $role;
         return $this;
     }
 
+    /**
+     * Get user role
+     *
+     * @return string
+     */
     public function getUserRole()
     {
         return $this->userRole;
     }
 
+    /**
+     * Set is test
+     *
+     * @param boolean $isTest Is this a test or not.
+     * @return Client
+     */
     public function setIsTest(bool $isTest)
     {
         $this->isTest = $isTest;
         return $this;
     }
 
+    /**
+     * Get is test
+     *
+     * @return string
+     */
     public function getIsTest()
     {
         return $this->isTest;
