@@ -714,4 +714,31 @@ class Client
             'is_test' => $this->getIsTest()
         ];
     }
+
+    /**
+     * Set parameters in bulk
+     *
+     * @param array $params Parameters to set.
+     * @return Client
+     */
+    public function setParams(array $params)
+    {
+        $this->setBlog($params['blog']);
+        $this->setIp($params['user_ip']);
+        $this->setAgent($params['user_agent']);
+        $this->setReferrer($params['referrer']);
+        $this->setPermalink($params['permalink']);
+        $this->setCommentType($params['comment_type']);
+        $this->setCommentAuthor($params['comment_author']);
+        $this->setCommentAuthorEmail($params['comment_author_email']);
+        $this->setCommentAuthorUrl($params['comment_author_url']);
+        $this->setCommentContent($params['comment_content']);
+        $this->setCommentDateGMT($params['comment_date_gmt']);
+        $this->setCommentPostModifiedDate($params['comment_post_modified_gmt']);
+        $this->setBlogLang($params['blog_lang']);
+        $this->setBlogCharset($params['blog_charset']);
+        $this->setUserRole($params['user_role']);
+        $this->setIsTest($params['is_test']);
+        return $this;
+    }
 }

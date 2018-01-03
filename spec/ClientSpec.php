@@ -500,4 +500,43 @@ class ClientSpec extends ObjectBehavior
         $stream->getContents()->willReturn("Thanks for making the web a better place.");
         $this->ham()->shouldReturn(true);
     }
+
+    function it_can_set_all_params_at_once()
+    {
+        $params = [
+            'blog' => 'http://example.com',
+            'user_ip' => '192.168.1.1',
+            'user_agent' => 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6',
+            'referrer' => 'http://www.google.com/',
+            'permalink' => 'http://yourblogdomainname.com/blog/post=1',
+            'comment_type' => 'comment',
+            'comment_author' => 'Eric Smith',
+            'comment_author_email' => 'eric@example.com',
+            'comment_author_url' => 'http://example.com',
+            'comment_content' => 'Nice post',
+            'comment_date_gmt' => '1975-12-25T14:15:16-0500',
+            'comment_post_modified_gmt' => '1975-12-25T14:15:16-0500',
+            'blog_lang' => 'en',
+            'blog_charset' => 'UTF-8',
+            'user_role' => 'administrator',
+            'is_test' => true,
+        ];
+        $this->setParams($params);
+        $this->getBlog()->shouldReturn('http://example.com');
+        $this->getIp()->shouldReturn('192.168.1.1');
+        $this->getAgent()->shouldReturn('Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6');
+        $this->getReferrer()->shouldReturn('http://www.google.com/');
+        $this->getPermalink()->shouldReturn('http://yourblogdomainname.com/blog/post=1');
+        $this->getCommentType()->shouldReturn('comment');
+        $this->getCommentAuthor()->shouldReturn('Eric Smith');
+        $this->getCommentAuthorEmail()->shouldReturn('eric@example.com');
+        $this->getCommentAuthorUrl()->shouldReturn('http://example.com');
+        $this->getCommentContent()->shouldReturn('Nice post');
+        $this->getCommentDateGMT()->shouldReturn('1975-12-25T14:15:16-0500');
+        $this->getCommentPostModifiedDate()->shouldReturn('1975-12-25T14:15:16-0500');
+        $this->getBlogLang()->shouldReturn('en');
+        $this->getBlogCharset()->shouldReturn('UTF-8');
+        $this->getUserRole()->shouldReturn('administrator');
+        $this->getIsTest()->shouldReturn(true);
+    }
 }
