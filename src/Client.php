@@ -564,18 +564,11 @@ class Client
      * Verify currently set key against the API
      *
      * @return boolean
-     * @throws KeyNotSet Key is not set.
-     * @throws BlogNotSet Blog is not set.
      * @throws KeyInvalid Key is not valid.
      */
     public function verifyKey()
     {
-        if (!$this->key) {
-            throw new KeyNotSet;
-        }
-        if (!$this->blog) {
-            throw new BlogNotSet;
-        }
+        $this->checkParams();
         $url = 'https://rest.akismet.com/1.1/verify-key';
         $request = $this->messageFactory->createRequest(
             'POST',
@@ -596,17 +589,10 @@ class Client
      * Check the currently set comment to see if it is spam
      *
      * @return boolean
-     * @throws KeyNotSet Key is not set.
-     * @throws BlogNotSet Blog is not set.
      */
     public function check()
     {
-        if (!$this->key) {
-            throw new KeyNotSet;
-        }
-        if (!$this->blog) {
-            throw new BlogNotSet;
-        }
+        $this->checkParams();
         $url = 'https://'.$this->getKey().'.rest.akismet.com/1.1/comment-check';
         $params = $this->getParams();
         $request = $this->messageFactory->createRequest(
@@ -628,17 +614,10 @@ class Client
      * Submit comment as spam
      *
      * @return boolean
-     * @throws BlogNotSet Blog is not set.
-     * @throws KeyNotSet Key is not set.
      */
     public function spam()
     {
-        if (!$this->key) {
-            throw new KeyNotSet;
-        }
-        if (!$this->blog) {
-            throw new BlogNotSet;
-        }
+        $this->checkParams();
         $url = 'https://'.$this->getKey().'.rest.akismet.com/1.1/submit-spam';
         $params = $this->getParams();
         $request = $this->messageFactory->createRequest(
@@ -660,17 +639,10 @@ class Client
      * Submit comment as ham
      *
      * @return boolean
-     * @throws BlogNotSet Blog is not set.
-     * @throws KeyNotSet Key is not set.
      */
     public function ham()
     {
-        if (!$this->key) {
-            throw new KeyNotSet;
-        }
-        if (!$this->blog) {
-            throw new BlogNotSet;
-        }
+        $this->checkParams();
         $url = 'https://'.$this->getKey().'.rest.akismet.com/1.1/submit-ham';
         $params = $this->getParams();
         $request = $this->messageFactory->createRequest(
@@ -686,6 +658,23 @@ class Client
             return true;
         }
         return false;
+    }
+
+    /**
+     * Checks required parameters
+     *
+     * @return void
+     * @throws BlogNotSet Blog is not set.
+     * @throws KeyNotSet Key is not set.
+     */
+    private function checkRequiredParams()
+    {
+        if (!$this->key) {
+            throw new KeyNotSet;
+        }
+        if (!$this->blog) {
+            throw new BlogNotSet;
+        }
     }
 
     /**
