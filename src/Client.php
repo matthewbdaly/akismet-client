@@ -586,4 +586,9 @@ class Client
         $this->isTest = null;
         return $this;
     }
+
+    public function check()
+    {
+        // TODO: write logic here
+    }
 }
