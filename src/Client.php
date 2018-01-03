@@ -65,6 +65,13 @@ class Client
     protected $commentType;
 
     /**
+     * Comment author
+     *
+     * @var $commentAuthor
+     */
+    protected $commentAuthor;
+
+    /**
      * HTTPlug client
      *
      * @var $client
@@ -220,5 +227,16 @@ class Client
     public function getCommentType()
     {
         return $this->commentType;
+    }
+
+    public function setCommentAuthor($author)
+    {
+        $this->commentAuthor = $author;
+        return $this;
+    }
+
+    public function getCommentAuthor()
+    {
+        return $this->commentAuthor;
     }
 }

@@ -135,4 +135,15 @@ class ClientSpec extends ObjectBehavior
         $this->getCommentType()->shouldReturn('comment');
     }
 
+    function it_can_set_the_comment_author()
+    {
+        $this->setCommentAuthor('comment_author')->shouldReturn($this);
+    }
+
+    function it_can_get_the_comment_author()
+    {
+        $this->getCommentAuthor()->shouldReturn(null);
+        $this->setCommentAuthor('Eric Smith')->shouldReturn($this);
+        $this->getCommentAuthor()->shouldReturn('Eric Smith');
+    }
 }
