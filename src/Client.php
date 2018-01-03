@@ -568,7 +568,7 @@ class Client
      */
     public function verifyKey()
     {
-        $this->checkParams();
+        $this->checkRequiredParams();
         $url = 'https://rest.akismet.com/1.1/verify-key';
         $request = $this->messageFactory->createRequest(
             'POST',
@@ -592,7 +592,7 @@ class Client
      */
     public function check()
     {
-        $this->checkParams();
+        $this->checkRequiredParams();
         $url = 'https://'.$this->getKey().'.rest.akismet.com/1.1/comment-check';
         $params = $this->getParams();
         $request = $this->messageFactory->createRequest(
@@ -617,7 +617,7 @@ class Client
      */
     public function spam()
     {
-        $this->checkParams();
+        $this->checkRequiredParams();
         $url = 'https://'.$this->getKey().'.rest.akismet.com/1.1/submit-spam';
         $params = $this->getParams();
         $request = $this->messageFactory->createRequest(
@@ -642,7 +642,7 @@ class Client
      */
     public function ham()
     {
-        $this->checkParams();
+        $this->checkRequiredParams();
         $url = 'https://'.$this->getKey().'.rest.akismet.com/1.1/submit-ham';
         $params = $this->getParams();
         $request = $this->messageFactory->createRequest(
