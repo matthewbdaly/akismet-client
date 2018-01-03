@@ -86,6 +86,13 @@ class Client
     protected $commentAuthorUrl;
 
     /**
+     * Comment content
+     *
+     * @var $commentContent
+     */
+    protected $commentContent;
+
+    /**
      * HTTPlug client
      *
      * @var $client
@@ -274,5 +281,16 @@ class Client
     public function getCommentAuthorUrl()
     {
         return $this->commentAuthorUrl;
+    }
+
+    public function setCommentContent($content)
+    {
+        $this->commentContent = $content;
+        return $this;
+    }
+
+    public function getCommentContent()
+    {
+        return $this->commentContent;
     }
 }
