@@ -58,6 +58,13 @@ class Client
     protected $permalink;
 
     /**
+     * Comment type
+     *
+     * @var $commentType
+     */
+    protected $commentType;
+
+    /**
      * HTTPlug client
      *
      * @var $client
@@ -202,5 +209,16 @@ class Client
     public function getPermalink()
     {
         return $this->permalink;
+    }
+
+    public function setCommentType($type)
+    {
+        $this->commentType = $type;
+        return $this;
+    }
+
+    public function getCommentType()
+    {
+        return $this->commentType;
     }
 }

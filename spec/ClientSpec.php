@@ -122,4 +122,17 @@ class ClientSpec extends ObjectBehavior
         $this->setPermalink('http://yourblogdomainname.com/blog/post=1')->shouldReturn($this);
         $this->getPermalink()->shouldReturn('http://yourblogdomainname.com/blog/post=1');
     }
+
+    function it_can_set_the_comment_type()
+    {
+        $this->setCommentType('comment')->shouldReturn($this);
+    }
+
+    function it_can_get_the_comment_type()
+    {
+        $this->getCommentType()->shouldReturn(null);
+        $this->setCommentType('comment')->shouldReturn($this);
+        $this->getCommentType()->shouldReturn('comment');
+    }
+
 }
