@@ -61,3 +61,14 @@ The client offers the following methds:
 * `spam()` - Submit comment to Akisment as spam
 * `ham()` - Submit comment to Akisment as ham
 * `setParams(array $params)` - Set parameters in bulk
+
+All of the `set()` methods and the `flush()` method are chainable, so you can do something like this:
+
+```
+$client->setParams($params)
+    ->setCommentType('comment')
+    ->setCommentAuthor('Bob Smith')
+    ->check();
+```
+
+Note that `verifyKey()`, `check()`, `ham()` and `spam()` do not flush the parameters, so ensure you do so before starting a new request.
