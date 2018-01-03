@@ -642,6 +642,13 @@ class Client
         return false;
     }
 
+    /**
+     * Submit comment as spam
+     *
+     * @return boolean
+     * @throws BlogNotSet Blog is not set.
+     * @throws KeyNotSet Key is not set.
+     */
     public function spam()
     {
         if (!$this->key) {
@@ -685,6 +692,13 @@ class Client
         return false;
     }
 
+    /**
+     * Submit comment as ham
+     *
+     * @return boolean
+     * @throws BlogNotSet Blog is not set.
+     * @throws KeyNotSet Key is not set.
+     */
     public function ham()
     {
         if (!$this->key) {
