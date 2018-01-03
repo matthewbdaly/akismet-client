@@ -110,4 +110,16 @@ class ClientSpec extends ObjectBehavior
         $this->setReferrer('http://www.google.com/')->shouldReturn($this);
         $this->getReferrer()->shouldReturn('http://www.google.com/');
     }
+
+    function it_can_set_the_permalink()
+    {
+        $this->setPermalink('http://yourblogdomainname.com/blog/post=1')->shouldReturn($this);
+    }
+
+    function it_can_get_the_permalink()
+    {
+        $this->getPermalink()->shouldReturn(null);
+        $this->setPermalink('http://yourblogdomainname.com/blog/post=1')->shouldReturn($this);
+        $this->getPermalink()->shouldReturn('http://yourblogdomainname.com/blog/post=1');
+    }
 }

@@ -51,6 +51,13 @@ class Client
     protected $referrer;
 
     /**
+     * Permalink
+     *
+     * @var $permalink
+     */
+    protected $permalink;
+
+    /**
      * HTTPlug client
      *
      * @var $client
@@ -184,5 +191,16 @@ class Client
     public function getReferrer()
     {
         return $this->referrer;
+    }
+
+    public function setPermalink($permalink)
+    {
+        $this->permalink = $permalink;
+        return $this;
+    }
+
+    public function getPermalink()
+    {
+        return $this->permalink;
     }
 }
