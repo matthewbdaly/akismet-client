@@ -664,7 +664,7 @@ class Client
         $request = $this->messageFactory->createRequest(
             'POST',
             $url,
-            $headers
+            $headers,
             http_build_query($params),
             '1.1'
         );
