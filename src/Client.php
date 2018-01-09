@@ -574,11 +574,14 @@ class Client
             'key' => $this->getKey(),
             'blog' => urlencode($this->getBlog())
         ];
+        $headers = [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ];
         $request = $this->messageFactory->createRequest(
             'POST',
             $url,
-            $params,
-            null,
+            $headers,
+            http_build_query($params),
             '1.1'
         );
         $response = $this->client->sendRequest($request);
@@ -599,11 +602,14 @@ class Client
         $this->checkRequiredParams();
         $url = 'https://'.$this->getKey().'.rest.akismet.com/1.1/comment-check';
         $params = $this->getParams();
+        $headers = [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ];
         $request = $this->messageFactory->createRequest(
             'POST',
             $url,
-            $params,
-            null,
+            $headers,
+            http_build_query($params),
             '1.1'
         );
         $response = $this->client->sendRequest($request);
@@ -624,11 +630,14 @@ class Client
         $this->checkRequiredParams();
         $url = 'https://'.$this->getKey().'.rest.akismet.com/1.1/submit-spam';
         $params = $this->getParams();
+        $headers = [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ];
         $request = $this->messageFactory->createRequest(
             'POST',
             $url,
-            $params,
-            null,
+            $headers,
+            http_build_query($params),
             '1.1'
         );
         $response = $this->client->sendRequest($request);
@@ -649,11 +658,14 @@ class Client
         $this->checkRequiredParams();
         $url = 'https://'.$this->getKey().'.rest.akismet.com/1.1/submit-ham';
         $params = $this->getParams();
+        $headers = [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ];
         $request = $this->messageFactory->createRequest(
             'POST',
             $url,
-            $params,
-            null,
+            $headers
+            http_build_query($params),
             '1.1'
         );
         $response = $this->client->sendRequest($request);
