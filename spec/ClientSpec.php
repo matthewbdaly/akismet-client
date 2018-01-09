@@ -58,11 +58,14 @@ class ClientSpec extends ObjectBehavior
             'key' => 'foo',
             'blog' => urlencode('http://example.com')
         ];
+        $headers = [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ];
         $messageFactory->createRequest(
             'POST',
             'https://rest.akismet.com/1.1/verify-key',
-            $params,
-            null,
+            $headers,
+            http_build_query($params),
             '1.1'
         )->willReturn($request);
         $client->sendRequest($request)->willReturn($response);
@@ -81,11 +84,14 @@ class ClientSpec extends ObjectBehavior
             'key' => 'foo',
             'blog' => urlencode('http://example.com')
         ];
+        $headers = [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ];
         $messageFactory->createRequest(
             'POST',
             'https://rest.akismet.com/1.1/verify-key',
-            $params,
-            null,
+            $headers,
+            http_build_query($params),
             '1.1'
         )->willReturn($request);
         $client->sendRequest($request)->willReturn($response);
@@ -354,7 +360,10 @@ class ClientSpec extends ObjectBehavior
             'user_role' => 'administrator',
             'is_test' => true,
         ];
-        $messageFactory->createRequest('POST', 'https://foo.rest.akismet.com/1.1/comment-check', $params, null, '1.1')->willReturn($request);
+        $headers = [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ];
+        $messageFactory->createRequest('POST', 'https://foo.rest.akismet.com/1.1/comment-check', $headers, http_build_query($params), '1.1')->willReturn($request);
         $client->sendRequest($request)->willReturn($response);
         $response->getStatusCode()->willReturn(200);
         $response->getBody()->willReturn($stream);
@@ -407,7 +416,10 @@ class ClientSpec extends ObjectBehavior
             'user_role' => 'administrator',
             'is_test' => true,
         ];
-        $messageFactory->createRequest('POST', 'https://foo.rest.akismet.com/1.1/comment-check', $params, null, '1.1')->willReturn($request);
+        $headers = [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ];
+        $messageFactory->createRequest('POST', 'https://foo.rest.akismet.com/1.1/comment-check', $headers, http_build_query($params), '1.1')->willReturn($request);
         $client->sendRequest($request)->willReturn($response);
         $response->getStatusCode()->willReturn(200);
         $response->getBody()->willReturn($stream);
@@ -460,7 +472,10 @@ class ClientSpec extends ObjectBehavior
             'user_role' => 'administrator',
             'is_test' => true,
         ];
-        $messageFactory->createRequest('POST', 'https://foo.rest.akismet.com/1.1/submit-spam', $params, null, '1.1')->willReturn($request);
+        $headers = [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ];
+        $messageFactory->createRequest('POST', 'https://foo.rest.akismet.com/1.1/submit-spam', $headers, http_build_query($params), '1.1')->willReturn($request);
         $client->sendRequest($request)->willReturn($response);
         $response->getStatusCode()->willReturn(200);
         $response->getBody()->willReturn($stream);
@@ -513,7 +528,10 @@ class ClientSpec extends ObjectBehavior
             'user_role' => 'administrator',
             'is_test' => true,
         ];
-        $messageFactory->createRequest('POST', 'https://foo.rest.akismet.com/1.1/submit-ham', $params, null, '1.1')->willReturn($request);
+        $headers = [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ];
+        $messageFactory->createRequest('POST', 'https://foo.rest.akismet.com/1.1/submit-ham', $headers, http_build_query($params), '1.1')->willReturn($request);
         $client->sendRequest($request)->willReturn($response);
         $response->getStatusCode()->willReturn(200);
         $response->getBody()->willReturn($stream);
