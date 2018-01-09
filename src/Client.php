@@ -570,10 +570,14 @@ class Client
     {
         $this->checkRequiredParams();
         $url = 'https://rest.akismet.com/1.1/verify-key';
+        $params = [
+            'key' => $this->getKey(),
+            'blog' => urlencode($this->getBlog())
+        ];
         $request = $this->messageFactory->createRequest(
             'POST',
             $url,
-            ['key' => $this->getKey(), 'blog' => urlencode($this->getBlog())],
+            $params,
             null,
             '1.1'
         );
